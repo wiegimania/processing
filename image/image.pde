@@ -20,7 +20,8 @@ void setup() {
   }
   
   // birthday bubbles ...
-  int[] b_color = { color(int(random(255)),255,255), color(255,int(random(255)),255), color(255,255,int(random(255))) };
+  //int[] b_color = { color(int(random(255)),255,255), color(255,int(random(255)),255), color(255,255,int(random(255))) };
+  int[] b_color = { color(int(random(255)),0,0), color(0,int(random(255)),0), color(0,0,int(random(255))) };
   int[] b_x = { int(random(500)), int(random(500)), int(random(500)) };
   int[] b_y = { int(random(100)), int(random(300)), int(random(800)) };
   int[] b_size = { int(random(100)), int(random(200)), int(random(300)) };
