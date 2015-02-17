@@ -2,7 +2,9 @@
 PImage img;
 // pattern
 int pattern = 40; 
-int rounds = 3;
+int rounds = 2;
+int myrotate = 10;
+
 // setup 
 void setup() {
   // application size
@@ -21,7 +23,7 @@ void setup() {
         pushMatrix();
         PImage imgPart = img.get(x, y, pattern, pattern);
         translate(0, 0);
-        rotate(radians(random(-10,10)));
+        rotate(radians(random(-myrotate,myrotate)));
         tint(255, int(random(255)));
         image(imgPart, x, y);
         popMatrix();     
