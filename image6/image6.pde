@@ -3,11 +3,11 @@ PImage img;
 PImage imgOverlay;
 
 // pattern
-int pattern = 10; 
-int myrotate = 0;
+int pattern = 30; 
+int myrotate = 2;
 int mytint = 150;
-int mytintstart = 0;
-int mypos = 0;
+int mytintstart = 100;
+int mypos = 2;
 
 // setup 
 void setup() {
@@ -23,7 +23,7 @@ void draw() {
     
   // transparent overlay
   tint(255, 255);  
-  imgOverlay = loadImage("pattern.jpg");
+  imgOverlay = loadImage("../image4/pattern.jpg");
   image(imgOverlay, 0, 0);
   
   // load image 
@@ -31,36 +31,24 @@ void draw() {
   // bg color 
   //background(img.get(0,0));
   for (int x = 0; x < width; x += pattern) {
+    myrotate += 2;    
     for (int y = 0; y < width; y += pattern) {
         
-      pushMatrix();
+        pushMatrix();
         PImage imgPart = img.get(x, y, pattern, pattern);          
 
-        if (x < 300) {
-          mytintstart = 100;
-          mypos = 2; 
-        } else if (x >= 300 && x < 400) {
-          myrotate = 5;
-          mytintstart = 100;
-        } else if (x >= 400 && x < 500) {
-          myrotate = 10;
-          mytintstart = 50;         
-        } else if (x >= 600 && x < 700) {
-          myrotate = 15;
-          mytintstart = 10;         
-        } else {
-          myrotate = 20;
-        }
-                   
         x += int(random(-mypos, mypos));
         y += int(random(-mypos, mypos));
         
+        tint(255, random(mytintstart, mytint));            
+
         translate(0, 0);
-        rotate(radians(random(-myrotate,myrotate)));
+        rotate(radians(myrotate));
         tint(255, random(mytintstart, mytint));            
 
         image(imgPart, x, y);
-        popMatrix();        
+        popMatrix();       
+       
       
     }
   } 
