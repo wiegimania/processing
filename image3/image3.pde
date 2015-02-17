@@ -2,7 +2,7 @@
 PImage img;
 // pattern
 int pattern = 40; 
-
+int rounds = 3;
 // setup 
 void setup() {
   // application size
@@ -15,7 +15,7 @@ void setup() {
   img = loadImage("../image/wiegi2.png");
   // bg color -> random image color
   background(img.get(0,0));
-  for(int i = 0; i < 3; ++i) {
+  for(int i = 0; i < rounds; ++i) {
     for (int x = 0; x < width; x += pattern) {
       for (int y = 0; y < width; y += pattern) {
         pushMatrix();
