@@ -3,7 +3,6 @@ import processing.pdf.*;
 // setup 
 color c;
 int triangles = 20;
-int myPoints = 10;
 int myPointSize = 10;
 int w = 400;
 int h = 400;
@@ -12,6 +11,10 @@ int max = (w + 100);
 int space = 10;
 int myW, myH, myWo, myHo;
 PShape img;
+String displayName = "DANIEL";
+int myPoints = displayName.length();
+int[] dotsX = new int[myPoints];
+int[] dotsY = new int[myPoints];
 
 void setup() {
   size(w, h);
@@ -48,16 +51,23 @@ background(160, 213, 216);
       line(myWo, myHo, myW, myH);
     }
     
-    // add char for dot
-    fill(65, 100, 177);
-    textSize(8);
-    text("W", (myW - 3), (myH + 4));
-
+    // set dot x/y
+    dotsX[i] = myW - 3;
+    dotsY[i] = myH + 4;
+    
     // set starting points
     myWo = myW;
     myHo = myH;
     
   }
+  
+  // add name dots
+  fill(65, 100, 177);
+  textSize(8);
+  for (int i = 0; i < dotsY.length; ++i) {
+    text(displayName.charAt(i), dotsX[i], dotsY[i]);
+  }
+  
   // save output as pdf
   endRecord();
 }
