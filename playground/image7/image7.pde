@@ -1,5 +1,3 @@
-import processing.pdf.*;
-
 // setup 
 color c;
 int triangles = 20;
@@ -11,8 +9,8 @@ int space = 10;
 int myW, myH, myWo, myHo;
 PShape img;
 PImage displayImg;
-String displayName1 = "CORINNA";
-String displayName2 = "P";
+String displayName1 = "DANIEL";
+String displayName2 = "W";
 int myPoints = displayName1.length();
 int myPointSize = 10;
 int[] dotsX = new int[myPoints];
@@ -20,7 +18,6 @@ int[] dotsY = new int[myPoints];
 
 void setup() {
   size(w, h);
-  beginRecord(PDF, "test.pdf");
   noStroke();
   noLoop(); 
   displayImg = loadImage("wiegi2.png");
@@ -51,7 +48,11 @@ void draw() {
   shape(img, space, ((h - 12) - space), 90, 12);
   
   // set user image
-  
+  tint(255, 255, 255, 255);
+  pushMatrix();
+  rotate(radians(int(random(-30, 30))));
+  image(displayImg, int(random(w)), int(random(h)));
+  popMatrix();
   
   // draw points
   fill(color(255, 255, 255));
@@ -83,14 +84,11 @@ void draw() {
     fill(65, 50, 177, 255);
     text(displayName1.charAt(i), dotsX[i], dotsY[i]);
   }
-  
-  // save output as pdf
-  endRecord();
+
 }
 
 // new image
 void mousePressed() {
-  beginRecord(PDF, "test.pdf");
   noStroke(); 
   redraw();
 }
@@ -103,3 +101,10 @@ int getNewDotPosition(int coord) {
     return int(random(space, (h - space)));
   }
 }  
+
+// save image
+void keyPressed() {
+    if (key == 's') {
+      saveFrame("triangle-grid-#####.png");
+    }
+}
