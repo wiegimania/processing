@@ -1,34 +1,34 @@
 import processing.pdf.*;
 
-/* @pjs font="DroidSansMono.ttf"; */
-
 // setup 
 color c;
 int triangles = 20;
-int myPointSize = 10;
 int w = 400;
 int h = 400;
 int min = -50;
 int max = (w + 100);
 int space = 10;
 int myW, myH, myWo, myHo;
-PShape img, imgChar;
+PShape img;
+PImage displayImg;
 String displayName1 = "DANIEL";
 String displayName2 = "W";
 int myPoints = displayName1.length();
+int myPointSize = 10;
 int[] dotsX = new int[myPoints];
 int[] dotsY = new int[myPoints];
 
 void setup() {
-  size(w, h);
+  size(w, h, P3D);
   beginRecord(PDF, "test.pdf");
-  textFont(createFont("DroidSansMono", 100));
   noStroke();
   noLoop(); 
+  displayImg = loadImage("wiegi2.png");
 }
 
 void draw() {
-background(160, 213, 216);
+  
+  background(160, 213, 216);
  
   // draw bg triangles
   for (int i = 0; i < triangles; ++i) {
@@ -38,9 +38,13 @@ background(160, 213, 216);
   }
   
   // draw lastname first char
-  fill(255, 255, 255, int(random(50, 150)));
-  text(displayName2, 100, 100);
-  
+  textFont(createFont("Rockwell-Bold", 150));
+  fill(255, 255, 255, int(random(100, 200)));
+  pushMatrix();
+  rotate(radians(int(random(30))));
+  text(displayName2, int(random(50)), int(random(50, 100)));
+  popMatrix();
+    
   // set h15 logo
   img = loadShape("h15_logo.svg");
   tint(255, 255, 255, 200);
@@ -62,7 +66,7 @@ background(160, 213, 216);
     
     // set dot x/y
     dotsX[i] = myW - 3;
-    dotsY[i] = myH - 3;
+    dotsY[i] = myH + 3;
     
     // set starting points
     myWo = myW;
@@ -71,11 +75,10 @@ background(160, 213, 216);
   }
    
   // add firstname dots
+  textFont(createFont("DroidSansMono", 9));
   for (int i = 0; i < dotsY.length; ++i) {
-    img = loadShape("Rockwell_Schrift_Test/"+ displayName1.charAt(i) +".svg");
-    img.disableStyle();
     fill(65, 50, 177, 255);
-    shape(img, dotsX[i], dotsY[i], 6, 6);
+    text(displayName1.charAt(i), dotsX[i], dotsY[i]);
   }
   
   // save output as pdf
