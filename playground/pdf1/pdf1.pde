@@ -1,3 +1,5 @@
+import processing.pdf.*;
+
 // setup 
 color c;
 int triangles = 20;
@@ -9,35 +11,28 @@ int min = -50;
 int max = (w + 100);
 int space = 10;
 int myW, myH, myWo, myHo;
-PImage img;
+PShape img;
 
 void setup() {
-  // application size
   size(w, h);
-  // outline
+  beginRecord(PDF, "test.pdf");
   noStroke();
-  // loop
-  noLoop();
+  noLoop(); 
 }
 
 void draw() {
-  background(211, 136, 141);
+background(160, 213, 216);
  
   // draw bg triangles
   for (int i = 0; i < triangles; ++i) {
-    c = color(167, int(random(0, 50)), 27, int(random(255)));
+    c = color(65, int(random(100, 200)), 177, int(random(255)));
     fill(c);
     triangle(int(random(min, max)), int(random(min, max)), int(random(min, max)), int(random(min, max)), int(random(min, max)), int(random(min, max)));
   }
   // set h15 logo
-  img = loadImage("h15-logo.png");
+  img = loadShape("h15_logo.svg");
   tint(255, 255, 255, 200);
-  image(img, space, ((h - img.height) - space));
-  
-  // set visual
-  img = loadImage("brille.png");
-  tint(211, 136, 141, 100);
-  image(img, ((w/2) - (img.width/2)), ((h/2) - (img.height/2)));
+  shape(img, space, ((h - 12) - space), 90, 12);
   
   // draw points
   fill(color(255, 255, 255));
@@ -54,29 +49,23 @@ void draw() {
     }
     
     // add char for dot
-    fill(167, 50, 27);
+    fill(65, 100, 177);
     textSize(8);
-    //text("W", (myW - 3), (myH + 4));
+    text("W", (myW - 3), (myH + 4));
 
     // set starting points
     myWo = myW;
     myHo = myH;
     
   }
-  
+  // save output as pdf
+  endRecord();
 }
 
 // new image
 void mousePressed() {
-  noStroke();
+  beginRecord(PDF, "test.pdf");
+  noStroke(); 
   redraw();
 }
-
-// save image
-void keyPressed() {
-    if (key == 's') {
-      saveFrame("triangle-grid-#####.tif");
-    }
-}
-
 
