@@ -18,8 +18,8 @@ void draw() {
   
   for (int x = 0; x <= img.width; ++x) {
     for (int y = 0; y <= img.width; ++y) {
-      fill(img.get (x, y));
-      rect(x+random(5), y+random(5), 1, 1);
+      stroke(img.get (x, y));
+      line(x, y, x+random(-10), y+random(-10));
     }
   }
 }
