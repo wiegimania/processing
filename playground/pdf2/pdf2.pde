@@ -3,16 +3,16 @@ import processing.pdf.*;
 // setup 
 color c;
 int triangles = 20;
-int w = 400;
-int h = 400;
+int w = 370;
+int h = 370;
 int min = -50;
 int max = (w + 100);
 int space = 10;
 int myW, myH, myWo, myHo;
 PShape img;
 PImage displayImg;
-String displayName1 = "CORINNA";
-String displayName2 = "P";
+String displayName1 = "DANIEL";
+String displayName2 = "W";
 int myPoints = displayName1.length();
 int myPointSize = 10;
 int[] dotsX = new int[myPoints];
@@ -23,7 +23,7 @@ void setup() {
   beginRecord(PDF, "test.pdf");
   noStroke();
   noLoop(); 
-  displayImg = loadImage("wiegi2.png");
+  displayImg = loadImage("wiegi3.png");
 }
 
 void draw() {
@@ -51,7 +51,8 @@ void draw() {
   shape(img, space, ((h - 12) - space), 90, 12);
   
   // set user image
-  
+  tint(255);
+  image(displayImg, 120, 200);
   
   // draw points
   fill(color(255, 255, 255));
