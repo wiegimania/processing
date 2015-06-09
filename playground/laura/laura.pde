@@ -27,7 +27,7 @@ void draw() {
 
 // save image
 void keyPressed() {
-  if (key == 'p') {
+  if (key == 's') {
       saveFrame("laura-#####.png");
   }
 }
