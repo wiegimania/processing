@@ -4,6 +4,7 @@ int appHeight = 600;
 int patternWidth = 50;
 int patternHeight = 50;
 int tmpPatternWidth, tmpPatternHeight;
+int draw = 0; // initial square painting off
 
 // start app
 void setup() {
@@ -17,15 +18,20 @@ void setup() {
 
 // nothing to do - wow :)
 void draw() { 
-  
+  if (draw == 1) {
+    fill(c);
+    rect((int(mouseX/patternWidth))*patternWidth, (int(mouseY/patternHeight))*patternHeight, patternWidth, patternHeight);
+  }
 }
 
-// create square
+// create square painting
 void mousePressed() {
-  //getSquarePosition(mouseX, mouseY);
-  fill(c);
-  rect((int(mouseX/patternWidth))*patternWidth, (int(mouseY/patternHeight))*patternHeight, patternWidth, patternHeight);
-  
+  draw = 1;
+}
+
+// stop square painting
+void mouseReleased() {
+  draw = 0;
 }
 
 // set square colors
@@ -61,10 +67,4 @@ void keyPressed() {
   } else if (keyCode == LEFT) {
   } else if (keyCode == RIGHT) {  
   }
-}
-
-// get position
-int getSquarePosition(int myX, int myY) {
-  println(c);
-  return 1;
 }
