@@ -1,28 +1,29 @@
 // image
+int appWidth = 1000; 
+int appHeight = 1000;
 PShape img;
 String dataUrl = "data/";
-int patternSize = 1; // @tbd dynamic folder size
+int patternSize = 10; // @tbd dynamic folder size
 int patternWidth = 50;
 int patternHeight = 50;
 int values[] = {50, 100, 150, 200};
 
 void setup() {
-  println(patternSize);
   // application size
-  size(500, 500);
+  size(appWidth, appHeight);
   background(255);
   smooth();
+  noStroke();
 }
 
 //draw random image on mouseX/mouseY
 void draw() { 
   if (mousePressed) {
-    // load image 
+    // load image
     int randomPattern = int(random(1, patternSize));
     patternWidth = values[int(random(0, 3))];
-    patternHeight = values[int(random(0, 3))];
-    img = loadShape(dataUrl + "gem-" + randomPattern + ".svg");
-    tint(255, 255, 255, 200);
+    patternHeight = patternWidth;
+    img = loadShape(dataUrl + "elem-" + randomPattern + ".svg");
     shape(img, int(mouseX - (patternWidth/2)), int(mouseY - (patternHeight/2)), patternWidth, patternHeight);
   }
 }
