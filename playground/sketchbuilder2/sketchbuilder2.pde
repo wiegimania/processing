@@ -58,7 +58,7 @@ void keyPressed() {
       patternHeight = 200;
       
   // key control
-  } else if (keyCode == UP || keyCode == DOWN) {
+  } else if (keyCode == UP || keyCode == DOWN) {
       tmpPatternWidth = patternWidth;
       tmpPatternHeight = patternHeight;
       patternWidth = tmpPatternHeight;
